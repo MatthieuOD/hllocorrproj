@@ -1,0 +1,72 @@
+{% extends "bootstrap/base.html" %}
+
+{% block doc -%}
+
+
+{%- block html %}
+
+
+    {%- block head %}
+        <title>Checkup</title>
+
+        {%- block metas %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {%- endblock metas %}
+
+        {%- block styles %}
+        <link href="https://fonts.googleapis.com/css?family=Cutive" rel="stylesheet"> 
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+        {%- endblock styles %}
+
+    {%- endblock head %}
+
+
+
+{% block body -%}
+
+    {% block navbar %}
+    {% include '_partials/_navlogged.html' %}
+    {%- endblock navbar %}
+
+    {% block content -%}
+
+        <div class="wrapper justify-content-center">
+            <div class="container">
+                <div class="row">
+                    <div class="message">
+                    <h1>HelloCory</h1>
+                    <br>
+                    <br> 
+                    <p id="lead">HelloCory help users with bipolar disorder to keep track of their moods and share results with their doctor to help recognize patterns in the user’s daily life.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-row text-center">
+                <div class="col-12">
+                    <br>
+                  
+                    <a href="{{url_for('doctorsignup')}}" button type="button" class="btn btn-primary btn-lg">DOCTOR REGISTER</button> </a>
+                    <a href="{{url_for('patientsignup')}}" button type="button" class="btn btn-primary btn-lg">PATIENT REGISTER</button> </a>
+                </div>
+             </div>
+
+
+    {%- endblock content %}
+
+    {% block scripts %}
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    {%- endblock scripts %}
+
+
+    {%- endblock body %}
+ 
+{%- endblock html %}
+
+{% endblock doc -%}

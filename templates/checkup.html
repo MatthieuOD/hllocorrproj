@@ -1,0 +1,315 @@
+{% extends "bootstrap/base.html" %}
+
+{% block doc -%}
+
+
+{%- block html %}
+
+
+    {%- block head %}
+        <title>Checkup</title>
+
+        {%- block metas %}
+        <meta name="viewport">
+        {%- endblock metas %}
+
+        {%- block styles %}
+        <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+        <link rel="stylesheet" href="{{url_for('.static', filename='checkup.css')}}">
+     
+
+        
+        {%- endblock styles %}
+
+    {%- endblock head %}
+
+
+
+{% block body -%}
+
+    {% block navbar %}
+ 
+    {%- endblock navbar %}
+
+    {% block content -%}
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col">
+
+                <form id="form my-form-element" cf-form class="row" method="post" action="/post_checkup" cf-create-id="">
+                    <fieldset>
+                        <label for="ready">Ready?</label>
+                        <input required="" cf-questions="Hi there! Are you ready to begin your draily checkup ? 😊" class="form-control" name="name" id="name" tabindex="-1" type="text">
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="hours_slept">Hours of Sleep</label>
+                            <input required="" cf-questions="How many times did you sleep ?" class="form-control" name="hours_slept" id="hours_slept" tabindex="-1" type="number">
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="mood">Mood Rate</label>
+                        <div class="radio">
+                        <label>
+                            <input cf-questions="Great ! Let's begin. How do you rate your mood today ?" name="mood" id="mood-0" value="0" tabindex="-1" type="radio">
+                            0 - No future
+                        </label>
+                        </div>
+                        <div class="radio">
+                        <label>
+                            <input name="mood" id="mood-1" value="1" tabindex="-1" type="radio">
+                            1 - Impossible to do anything
+                        </label>
+                        </div>
+                        <div class="radio">
+                        <label>
+                            <input name="mood" id="mood-2" value="2" tabindex="-1" type="radio">
+                            2 - I need to be alone
+                        </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            <input name="mood" id="mood-3" value="3" tabindex="-1" type="radio">
+                            3 - Things go bad
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            <input name="mood" id="mood-4" value="4" tabindex="-1" type="radio">
+                            4 - Concentration less
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            <input name="mood" id="mood-5" value="5" tabindex="-1" type="radio">
+                            5 - Neutral. Life is going.
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                            <input name="mood" id="mood-6" value="6" tabindex="-1" type="radio">
+                            6 - I feel fine !
+                            </label>
+                        </div>
+                            <div class="radio">
+                            <label>
+                            <input name="mood" id="mood-7" value="7" tabindex="-1" type="radio">
+                            7 - I'm very productive
+                            </label>
+                        </div>
+                            <div class="radio">
+                            <label>
+                            <input name="mood" id="mood-8" value="8" tabindex="-1" type="radio">
+                            8 - On fire ! 
+                            </label>
+                        </div>
+                            <div class="radio">
+                            <label>
+                            <input name="mood" id="mood-9" value="9" tabindex="-1" type="radio">
+                            9 - Call me Kanye ! 
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="anxiety">Anxiety Rate</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="How do you rate your anxiety today ? 0 is " name="anxiety" id="anxiety-0" value="0" tabindex="-1" type="radio">
+                                0 - None
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="anxiety" id="anxiety-1" value="1" tabindex="-1" type="radio">
+                                1 - Mild
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="anxiety" id="anxiety-2" value="2" tabindex="-1" type="radio">
+                                2 - Mild-Moderate
+                            </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input name="anxiety" id="anxiety-3" value="3" tabindex="-1" type="radio">
+                                3 - Moderate-High
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input name="anxiety" id="anxiety-4" value="4" tabindex="-1" type="radio">
+                                4 - Highest
+                                </label>
+                            </div>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="irritability">irritability Rate</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="How do you rate your irritability today ?" name="irritability" id="irritability-0" value="0" tabindex="-1" type="radio">
+                                0 - None
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="irritability" id="irritability-1" value="1" tabindex="-1" type="radio">
+                                1 - Mild
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="irritability" id="irritability-2" value="2" tabindex="-1" type="radio">
+                                2 - Mild-Moderate
+                            </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input name="irritability" id="irritability-3" value="3" tabindex="-1" type="radio">
+                                3 - Moderate-High
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                <input name="irritability" id="irritability-4" value="4" tabindex="-1" type="radio">
+                                4 - Highest
+                                </label>
+                            </div>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="suicidal_tendencies">Suicidal ideas</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="Have you had any suicidal thoughts in the last 24 hours?" name="suicidal_tendencies" id="suicidal_tendencies-0" value="0" tabindex="-1" type="radio">
+                                No
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="suicidal_tendencies" id="suicidal_tendencies-1" value="1" tabindex="-1" type="radio">
+                                Yes
+                            </label>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="psychotics">Psychotics ideas</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="Have you had any Psychotics thoughts in the last 24 hours?" name="psychotics" id="psychotics-0" value="0" tabindex="-1" type="radio">
+                                No
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="psychotics" id="psychotics-1" value="1" tabindex="-1" type="radio">
+                                Yes
+                            </label>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="strange_ideas">Strange Ideas</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="Have you had any strange ideas ?" name="strange_ideas" id="strange_ideas-0" value="0" tabindex="-1" type="radio">
+                                No
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="strange_ideas" id="strange_ideas-1" value="1" tabindex="-1" type="radio">
+                                Yes
+                            </label>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="dangerous_comportment">Dangerous Comportment</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="Have you had a dangerous comportment ?" name="dangerous_comportment" id="dangerous_comportment-0" value="0" tabindex="-1" type="radio">
+                                No
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="dangerous_comportment" id="dangerous_comportment-1" value="1" tabindex="-1" type="radio">
+                                Yes
+                            </label>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="alcool">Alcool</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="have you been drinking alcohol in the past 24 hours?" name="alcool" id="alcool-0" value="0" tabindex="-1" type="radio">
+                                No
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="alcool" id="alcool-1" value="1" tabindex="-1" type="radio">
+                                Yes
+                            </label>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="drogues">Cannabis</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="have you been drinking alcohol in the past 24 hours?" name="drogues" id="drogues-0" value="0" tabindex="-1" type="radio">
+                                No
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="drogues" id="drogues-1" value="1" tabindex="-1" type="radio">
+                                Yes
+                            </label>
+                    </fieldset>
+
+                    <fieldset>
+                            <label for="pills">Pills</label>
+                            <div class="radio">
+                            <label>
+                                <input cf-questions="Do you take a treatment prescribed by a psychiatrist?" name="pills" id="pills-0" value="0" tabindex="-1" type="radio">
+                                No
+                            </label>
+                            </div>
+                            <div class="radio">
+                            <label>
+                                <input name="pills" id="pills-1" value="1" tabindex="-1" type="radio">
+                                Yes
+                            </label>
+                    </fieldset>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>  
+
+    </div>
+
+    
+    {%- endblock content %}
+
+    {% block scripts %}
+    <script></script>
+
+  	<script type="text/javascript" src="https://cf-4053.kxcdn.com/conversational-form/0.9.6/conversational-form.min.js" crossorigin></script>
+      
+    {%- endblock scripts %}
+
+
+    {%- endblock body %}
+ 
+{%- endblock html %}
+
+{% endblock doc -%}
+

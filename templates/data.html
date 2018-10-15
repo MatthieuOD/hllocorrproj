@@ -1,0 +1,106 @@
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block doc -%}
+
+    {%- block head %}
+        <title>Checkup</title>
+
+        {%- block metas %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {%- endblock metas %}
+
+        <meta charset="utf-8" />   
+        <title>Mood</title>      <!-- import plugin script -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css"> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+        <script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+              crossorigin="anonymous">
+        </script>
+    {%- endblock head %}
+
+    <body>
+        {% block navbar %}
+        {% include '_partials/_navlogged.html' %}
+        {%- endblock navbar %}
+    
+            <canvas id="myChart" ></canvas>
+
+            
+            
+    </body>
+    
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: [{% for checkup in usr %}
+                        "{{ checkup.made_on }}",
+                        {% endfor %}],
+                datasets: [
+                    {
+                        label: "Mood",
+                        backgroundColor: ["rgba(52, 71, 94, .15)"],
+                        borderColor: ["rgba(52, 71, 94, .75)"],
+                        data: [{% for checkup in usr %}
+                            {{ checkup.humeur }},
+                            {% endfor %}],   
+                    },
+                    {
+                        label: "Hours Slept",
+                        backgroundColor: ["rgba(240, 196, 50, .15)"],
+                        borderColor: ["rgba(240, 196, 50, .75)"],
+                        data: [{% for checkup in usr %}
+                            {{ checkup.hours_slept }},
+                            {% endfor %}],   
+
+                    },
+                    {
+                        label: "Anxiety",
+                        backgroundColor: ["rgba(222, 67, 47, .15)"],
+                        borderColor: ["rgba(222, 67, 47, .75)"],
+                        data: [{% for checkup in usr %}
+                            {{ checkup.anxiety }},
+                            {% endfor %}],   
+
+                    },
+                    {
+                        label: "Irritability",
+                        backgroundColor: ["rgba(99, 224, 144, .15)"],
+                        borderColor: ["rgba(99, 224, 144, .75)"],
+                        data: [{% for checkup in usr %}
+                            {{ checkup.irritability }},
+                            {% endfor %}],   
+
+                    },
+
+
+                
+                ]
+            },
+
+            // Configuration options go here
+            options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+    }
+}
+        });
+    </script>
+
+{% endblock doc -%}
